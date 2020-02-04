@@ -1,0 +1,11 @@
+{
+  "name": "express-something",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "https://github.com/MenuDocs/bug-free-meme",
+  "author": "duncte123",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
