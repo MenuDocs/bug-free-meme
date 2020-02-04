@@ -2,6 +2,7 @@
   "name": "express-something",
   "version": "1.0.0",
   "main": "app.js",
+  "description": "It does something",
   "repository": "https://github.com/MenuDocs/bug-free-meme",
   "author": "duncte123",
   "license": "MIT",
