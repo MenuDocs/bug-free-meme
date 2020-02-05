@@ -12,4 +12,15 @@ app.get('/meme', async function (req, res) {
     res.send(resp.data);
 });
 
-app.listen(process.env.PORT || 3000);
+app.get('/oink', (req, res) => {
+	const routes = app._router.stack
+	    .map(x => x.route)
+		.filter(Boolean)
+		.map(r => r.path);
+    res.send(routes);
+});
+
+const port = process.env.PORT || 3000;
+
+console.log(`http://localhost:${port}/`)
+app.listen(port);
