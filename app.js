@@ -1,5 +1,5 @@
 const express = require('express');
-const axios = require('axios');
+const https = require('https');
 const app = express();
 
 app.get('/', function (req, res) {
@@ -7,7 +7,29 @@ app.get('/', function (req, res) {
 });
 
 app.get('/meme', async function (req, res) {
-    const resp = await axios.get('https://apis.duncte123.me/meme');
+	const resp = await new Promise((resolve, reject) => {
+		const options = {
+			headers: {
+				'User-Agent': req.headers['user-agent'], // Copy browser thing
+			},
+		};
+		
+		https.get('https://apis.duncte123.me/meme', options, (resp) => {
+		  let data = '';
+
+		  // A chunk of data has been recieved.
+		  resp.on('data', (chunk) => {
+			data += chunk;
+		  });
+
+		  // The whole response has been received. Print out the result.
+		  resp.on('end', () => {
+			resolve(JSON.parse(data));
+		  });
+
+		}).on('error', reject);
+		
+	});
 
     res.send(resp.data);
 });
